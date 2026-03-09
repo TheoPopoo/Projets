@@ -292,7 +292,7 @@ Pour répondre aux exigences de sécurité et prévenir les attaques par force b
 
 ## Infrastructure
 
-![20260305_1317_Image Generation_simple_compose_01kjyyttseebcayt6qteadfkdn.png](20260305_1317_Image_Generation_simple_compose_01kjyyttseebcayt6qteadfkdn.png)
+![20260305_1317_Image Generation_simple_compose_01kjyyttseebcayt6qteadfkdn.png](screenshots/20260305_1317_Image_Generation_simple_compose_01kjyyttseebcayt6qteadfkdn.png)
 
 ---
 
