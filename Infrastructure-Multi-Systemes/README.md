@@ -1,10 +1,8 @@
-# COMPTE RENDU DE PROJET : Mise en place d’une infrastructure multi-systèmes
+# Mise en place d’une infrastructure multi-systèmes
 
 ---
 
 **Formation :** Administrateur d’Infrastructures Sécurisées
-
-**Étudiant :** Theo Poletto
 
 **Date :** Mars 2026
 
