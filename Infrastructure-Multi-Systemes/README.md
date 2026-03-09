@@ -22,7 +22,7 @@ Ce document détaille la mise en place d'une infrastructure réseau et système 
 
 Avant de commencer les installations, il est nécessaire de créer un réseau virtuel (Réseau NAT ou Réseau Interne) dans VirtualBox pour s'assurer que toutes les machines pourront communiquer entre elles de manière isolée.
 
-![image.png](image.png)
+![image.png](screenshots/image.png)
 
 - J'ai créé un réseau nommé `NAT-Projet1`.
 - J'ai défini la plage d'adresses IP `192.168.10.0/24`.
@@ -36,12 +36,12 @@ J'ai créé une machine virtuelle (nommée `SRV-WIN-01`) et j'y ai installé Win
 
 - J'ai renommé la machine en `SRV-WIN-01`.
 
-![image.png](image%201.png)
+![image.png](screenshots/image%201.png)
 
 J'ai attribué une adresse IP statique au serveur : `192.168.10.10` (Masque : `255.255.255.0`, Passerelle : `192.168.10.1`, DNS : `127.0.0.1`).
 ****
 
-![image.png](image%202.png)
+![image.png](screenshots/image%202.png)
 
 ### 1.3. Mise en place du Contrôleur de Domaine (AD DS)
 
@@ -50,13 +50,13 @@ Pour centraliser l'administration de mon infrastructure, j'ai promu ce serveur e
 - J'ai installé le rôle **Services de domaine Active Directory** ainsi que le rôle **Serveur DNS**.
 - J'ai ensuite promu le serveur pour créer une nouvelle forêt avec le nom de domaine racine `livecampus.local`.
 
-![image.png](image%203.png)
+![image.png](screenshots/image%203.png)
 
-![image.png](image%204.png)
+![image.png](screenshots/image%204.png)
 
 - Après redémarrage, j'ai pu me connecter avec le compte administrateur du domaine (`LIVECAMPUS\Administrateur`).
 
-![image.png](image%205.png)
+![image.png](screenshots/image%205.png)
 
 ### 1.4. Configuration du service DHCP
 
@@ -64,20 +64,20 @@ Afin d'automatiser l'attribution des configurations réseau aux futurs postes cl
 
 - J'ai installé le rôle **Serveur DHCP** et je l'ai autorisé dans l'Active Directory.
 
-![image.png](image%206.png)
+![image.png](screenshots/image%206.png)
 
 - J'ai créé une nouvelle étendue distribuant les adresses de `192.168.10.100` à `192.168.10.150`.
 
-![image.png](image%207.png)
+![image.png](screenshots/image%207.png)
 
 - J'ai configuré les options de l'étendue pour distribuer également l'adresse de la passerelle (`192.168.10.1`).
 
-![image.png](image%208.png)
+![image.png](screenshots/image%208.png)
 
 DNS enregistrement de la zone livecampus.local
 ****
 
-![image.png](image%209.png)
+![image.png](screenshots/image%209.png)
 
 ### 1.5. Déploiement du système client Windows et création de l'image
 
@@ -86,43 +86,43 @@ Pour répondre au besoin de déploiement massif, j'ai préparé une image systè
 - J'ai installé un poste client vierge Windows 10 connecté au réseau `NAT-Projet1`.
 - J'ai vérifié que le client recevait bien une adresse IP de mon serveur DHCP.
 
-![image.png](image%2010.png)
+![image.png](screenshots/image%2010.png)
 
 Vérifications coté serveur.
 
-![image.png](image%2011.png)
+![image.png](screenshots/image%2011.png)
 
 - J'ai ensuite utilisé l'utilitaire **Sysprep** (avec l'option "Généraliser" et arrêt du système) pour supprimer les identifiants uniques de la machine (SID).
 
-![image.png](image%2012.png)
+![image.png](screenshots/image%2012.png)
 
 - Enfin, depuis VirtualBox, j'ai cloné cette machine éteinte pour créer mon poste de travail définitif : `CLI-WIN-01`.
 
-![image.png](image%2013.png)
+![image.png](screenshots/image%2013.png)
 
 Notre Client 1 est bien sur le DHCP 
 
-![image.png](image%2014.png)
+![image.png](screenshots/image%2014.png)
 
 On vérifie pour confirmation depuis le serveur 
 
-![image.png](image%2015.png)
+![image.png](screenshots/image%2015.png)
 
 ### 1.6. Intégration du client au domaine
 
 J'ai démarré mon clone `CLI-WIN-01` et, après la phase de configuration initiale (OOBE), je l'ai intégré au domaine `livecampus.local`.
 
-![image.png](image%2016.png)
+![image.png](screenshots/image%2016.png)
 
-![image.png](image%2017.png)
+![image.png](screenshots/image%2017.png)
 
 J'ai vérifié sur mon serveur dans la console "Utilisateurs et ordinateurs Active Directory" que l'objet ordinateur était bien présent.
 
-![image.png](image%2018.png)
+![image.png](screenshots/image%2018.png)
 
 Premier connexion au domaine depuis le client 
 
-![image.png](image%2019.png)
+![image.png](screenshots/image%2019.png)
 
 ### 1.7. Mise en place de la tolérance aux pannes du stockage
 
@@ -130,17 +130,17 @@ Afin de sécuriser les données du serveur en cas de défaillance matérielle, j
 
 - J'ai ajouté deux nouveaux disques durs virtuels de taille identique à ma VM serveur.
 
-![image.png](image%2020.png)
+![image.png](screenshots/image%2020.png)
 
-![image.png](image%2021.png)
+![image.png](screenshots/image%2021.png)
 
 - Dans la console de "Gestion des disques" de Windows Server, je les ai initialisés puis j'ai créé un "Nouveau volume en miroir".
 
-![image.png](image%2022.png)
+![image.png](screenshots/image%2022.png)
 
-![image.png](image%2023.png)
+![image.png](screenshots/image%2023.png)
 
-![image.png](image%2024.png)
+![image.png](screenshots/image%2024.png)
 
 ### 1.8. Création et application de Stratégies de Groupe (GPO)
 
@@ -148,33 +148,33 @@ Pour illustrer l'administration centralisée, j'ai mis en place des restrictions
 
 - J'ai d'abord créé une Unité d'Organisation (OU) nommée `LiveCampus_Projet`
 
-![image.png](image%2025.png)
+![image.png](screenshots/image%2025.png)
 
 - Dans laquelle j'ai déplacé mon ordinateur client et créé un utilisateur de test (`t.poletto`).
 
-![image.png](image%2026.png)
+![image.png](screenshots/image%2026.png)
 
 J'ai créé et lié une GPO à cette OU avec deux paramètres spécifiques 
 
 1. **Configuration Ordinateur :** Affichage d'un message d'avertissement de sécurité obligatoire avant l'ouverture de session.
 
-![image.png](image%2027.png)
+![image.png](screenshots/image%2027.png)
 
 1. **Configuration Ordinateur :** Affichage d'un message d'avertissement de sécurité obligatoire avant l'ouverture de session.
 
-![image.png](image%2028.png)
+![image.png](screenshots/image%2028.png)
 
 2.**Configuration Utilisateur :** Suppression de l'icône de la Corbeille sur le bureau.
 
-![image.png](image%2029.png)
+![image.png](screenshots/image%2029.png)
 
 Après reconnexion sur le poste client avec l'utilisateur de test, les deux stratégies ont été appliquées avec succès.
 
-![image.png](image%2030.png)
+![image.png](screenshots/image%2030.png)
 
 j’ai donc redémarrer pour afficher le messages mis en amont.
 
-![image.png](image%2031.png)
+![image.png](screenshots/image%2031.png)
 
 ---
 
