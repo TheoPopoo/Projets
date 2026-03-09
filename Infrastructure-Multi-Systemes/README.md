@@ -186,35 +186,35 @@ Afin d'intégrer un environnement open source à mon infrastructure Microsoft, j
 
 - J'ai créé une machine virtuelle connectée au réseau `NAT-Projet1` et j'ai procédé à l'installation standard d'Ubuntu.
 
-![image.png](image%2032.png)
+![image.png](screenshots/image%2032.png)
 
-![image.png](image%2033.png)
+![image.png](screenshots/image%2033.png)
 
 - J'ai vérifié que la machine recevait bien une adresse IP dynamique de mon serveur DHCP Windows (`SRV-WIN-01`).
 
-![image.png](image%2034.png)
+![image.png](screenshots/image%2034.png)
 
 Pour intégrer cette machine au domaine Windows, j'ai installé les paquets nécessaires (notamment `realmd` et `sssd`).
 
-![image.png](image%2035.png)
+![image.png](screenshots/image%2035.png)
 
 `realm discover` pour voir si je communique bien avec la machine Windows.
 
-![image.png](image%2036.png)
+![image.png](screenshots/image%2036.png)
 
 - J'ai ensuite joint le domaine avec succès via la commande `realm join -U Administrateur livecampus.local`et activé la création automatique des répertoires personnels (`pam-auth-update --enable mkhomedir`).
 
-![image.png](image%2037.png)
+![image.png](screenshots/image%2037.png)
 
 - J'ai validé l'intégration en faisant id (`t.poletto@livecampus.local`). pour voir si je suis bien dans le domaine.
 
-![image.png](image%2038.png)
+![image.png](screenshots/image%2038.png)
 
 - J'ai validé l'intégration en ouvrant une session graphique avec mon compte utilisateur de l'Active Directory (`t.poletto@livecampus.local`).
 
-![image.png](image%2039.png)
+![image.png](screenshots/image%2039.png)
 
-![image.png](image%2040.png)
+![image.png](screenshots/image%2040.png)
 
 ### 2.2. Préparation de l'image de déploiement Linux
 
@@ -222,27 +222,27 @@ Tout comme pour Windows, j'ai préparé ce système pour en faire une image clon
 
 - J'ai réinitialisé l'identifiant de la machine en vidant le fichier `/etc/machine-id` et en recréant le lien symbolique `/var/lib/dbus/machine-id`.
 
-![image.png](image%2041.png)
+![image.png](screenshots/image%2041.png)
 
 J'ai ensuite éteint la machine de base et j'ai généré un clone intégral (avec de nouvelles adresses MAC) nommé `CLI-LIN-01`, qui est devenu mon poste de travail Linux définitif.
 
-![image.png](image%2042.png)
+![image.png](screenshots/image%2042.png)
 
 ### 2.3. Installation du Serveur Web Linux et de l'interface de gestion
 
 J'ai ensuite mis en place un serveur d'applications sous Linux (nommé `SRV-LIN-01`) pour héberger un service web et démontrer l'administration à distance de l'infrastructure.
 
-![image.png](image%2043.png)
+![image.png](screenshots/image%2043.png)
 
 Vérification sur le DHCP 
 
-![image.png](image%2044.png)
+![image.png](screenshots/image%2044.png)
 
 - Après l'installation d'Ubuntu, j'ai déployé le serveur web **Apache2** et me suis assuré que le service était actif.
 
-![image.png](image%2045.png)
+![image.png](screenshots/image%2045.png)
 
-![image.png](image%2046.png)
+![image.png](screenshots/image%2046.png)
 
 - J'ai testé l'accessibilité du serveur web depuis le navigateur de mon client Windows (`CLI-WIN-01`), confirmant la bonne communication inter-systèmes.
 
@@ -250,15 +250,15 @@ Vérification sur le DHCP
 
 - Pour faciliter l'administration du serveur, j'ai installé l'interface de gestion web **Cockpit**.
 
-![image.png](image%2048.png)
+![image.png](screenshots/image%2048.png)
 
-![image.png](image%2049.png)
+![image.png](screenshots/image%2049.png)
 
 - Je me suis connecté au tableau de bord Cockpit depuis le navigateur de mon client Windows via le port 9090 en HTTPS.
 
-![image.png](image%2050.png)
+![image.png](screenshots/image%2050.png)
 
-![image.png](image%2051.png)
+![image.png](screenshots/image%2051.png)
 
 ### 2.4. Sécurisation de l'accès au serveur via SSH (Clé avec Passphrase)
 
@@ -266,27 +266,27 @@ Pour répondre aux exigences de sécurité et prévenir les attaques par force b
 
 - J'ai installé le service `openssh-server` sur mon serveur Linux `SRV-LIN-01`.
 
-![image.png](image%2052.png)
+![image.png](screenshots/image%2052.png)
 
-![image.png](image%2053.png)
+![image.png](screenshots/image%2053.png)
 
 - Depuis mon client Linux `CLI-LIN-01`, j'ai généré une paire de clés RSA (`ssh-keygen`), que j'ai impérativement protégée par une **Passphrase** (phrase secrète).
 
-![image.png](image%2054.png)
+![image.png](screenshots/image%2054.png)
 
 - J'ai exporté la clé publique vers le serveur à l'aide de la commande `ssh-copy-id`.
 
-![image.png](image%2055.png)
+![image.png](screenshots/image%2055.png)
 
 - Pour verrouiller le serveur, j'ai édité le fichier de configuration `/etc/ssh/sshd_config` en modifiant la directive `PasswordAuthentication` sur `no`, puis j'ai redémarré le service SSH.
 
-![image.png](image%2056.png)
+![image.png](screenshots/image%2056.png)
 
-![image.png](image%2057.png)
+![image.png](screenshots/image%2057.png)
 
 - J'ai validé la mise en place de la sécurité en me connectant en SSH depuis le client : le serveur a refusé les mots de passe et a exigé la Passphrase de ma clé pour autoriser l'accès.
 
-![image.png](image%2058.png)
+![image.png](screenshots/image%2058.png)
 
 ---
 
