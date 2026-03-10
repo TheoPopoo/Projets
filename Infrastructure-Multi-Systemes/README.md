@@ -4,8 +4,6 @@
 ![VirtualBox](https://img.shields.io/badge/VirtualBox-v7.0-183a61?style=flat-square&logo=virtualbox)
 ![Network](https://img.shields.io/badge/Réseau-NAT_Isolé-success?style=flat-square)
 
-**Environnement :** VirtualBox
-
 ---
 
 ## Introduction
