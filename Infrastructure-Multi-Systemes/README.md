@@ -2,10 +2,6 @@
 
 ---
 
-**Formation :** Administrateur d’Infrastructures Sécurisées
-
-**Date :** Mars 2026
-
 **Environnement :** VirtualBox
 
 ---
