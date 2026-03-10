@@ -1,4 +1,8 @@
-# Mise en place d’une infrastructure multi-systèmes
+# 🌐 Mise en place d'une infrastructure multi-systèmes
+![Windows Server](https://img.shields.io/badge/Windows_Server-2022-blue?style=flat-square&logo=microsoft)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-22.04_LTS-E94333?style=flat-square&logo=ubuntu)
+![VirtualBox](https://img.shields.io/badge/VirtualBox-v7.0-183a61?style=flat-square&logo=virtualbox)
+![Network](https://img.shields.io/badge/Réseau-NAT_Isolé-success?style=flat-square)
 
 ---
 
