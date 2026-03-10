@@ -14,7 +14,7 @@ Ce document détaille la mise en place d'une infrastructure réseau et système 
 
 ## 1. Partie Windows
 
-### 1.1. Préparation de l'environnement réseau (**Configuration Préalable : Le Réseau VirtualBox**)**
+### 1.1. Préparation de l'environnement réseau (**Configuration Préalable : Le Réseau VirtualBox**)
 
 Avant de commencer les installations, il est nécessaire de créer un réseau virtuel (Réseau NAT ou Réseau Interne) dans VirtualBox pour s'assurer que toutes les machines pourront communiquer entre elles de manière isolée.
 
